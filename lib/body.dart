@@ -47,57 +47,60 @@ class _HomepageState extends State {
       ),
       floatingActionButtonLocation:
       FloatingActionButtonLocation.endDocked,
-      bottomNavigationBar: BubbleBottomBar(
-        opacity: 0.2,
-        backgroundColor: Colors.white,
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(16.0),
-        ),
-        currentIndex: currentIndex,
-        hasInk: true,
-        inkColor: Colors.black12,
-        hasNotch: true,
-        fabLocation: BubbleBottomBarFabLocation.end,
-        onTap: changePage,
-        items: [
-          BubbleBottomBarItem(
-            backgroundColor: Colors.red,
-            icon: Icon(
-              Icons.dashboard,
-              color: Colors.black,
-            ),
-            activeIcon: Icon(
-              Icons.dashboard,
-              color: Colors.red,
-            ),
-            title: Text('Home'),
+
+      bottomNavigationBar:
+        BubbleBottomBar(
+          opacity: 0.2,
+          backgroundColor: Colors.white,
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(16.0),
           ),
-          BubbleBottomBarItem(
-            backgroundColor: Colors.indigo,
-            icon: Icon(
-              Icons.account_circle_outlined,
-              color: Colors.black,
+          currentIndex: currentIndex,
+          hasInk: true,
+          inkColor: Colors.black12,
+          hasNotch: true,
+          fabLocation: BubbleBottomBarFabLocation.end,
+          onTap: changePage,
+          items: [
+            BubbleBottomBarItem(
+              backgroundColor: Colors.red,
+              icon: Icon(
+                Icons.dashboard,
+                color: Colors.black,
+              ),
+              activeIcon: Icon(
+                Icons.dashboard,
+                color: Colors.red,
+              ),
+              title: Text('Home'),
             ),
-            activeIcon: Icon(
-              Icons.account_circle_outlined,
-              color: Colors.indigo,
+            BubbleBottomBarItem(
+              backgroundColor: Colors.indigo,
+              icon: Icon(
+                Icons.account_circle_outlined,
+                color: Colors.black,
+              ),
+              activeIcon: Icon(
+                Icons.account_circle_outlined,
+                color: Colors.indigo,
+              ),
+              title: Text('Profile'),
             ),
-            title: Text('Profile'),
-          ),
-          BubbleBottomBarItem(
-            backgroundColor: Colors.deepPurple,
-            icon: Icon(
-              Icons.settings,
-              color: Colors.black,
+            BubbleBottomBarItem(
+              backgroundColor: Colors.deepPurple,
+              icon: Icon(
+                Icons.settings,
+                color: Colors.black,
+              ),
+              activeIcon: Icon(
+                Icons.settings,
+                color: Colors.deepPurple,
+              ),
+              title: Text('Settings'),
             ),
-            activeIcon: Icon(
-              Icons.settings,
-              color: Colors.deepPurple,
-            ),
-            title: Text('Settings'),
-          ),
-        ],
+          ],
       ),
+
       body: (currentIndex == 0)
           ? Text(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar nisl nec gravida imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer sit amet pellentesque velit. Morbi id suscipit eros. Nunc fringilla quam id porta auctor. Nunc in facilisis quam, ut posuere metus. Donec finibus ullamcorper diam sed vulputate. Nullam ac quam id lectus placerat blandit. Mauris nibh felis, tempor id malesuada et, elementum sed elit. Morbi sit amet ultricies velit, vitae accumsan dolor. In hac habitasse platea dictumst. Aliquam volutpat at lectus nec hendrerit. Duis feugiat pretium libero, quis laoreet eros. Sed tempus leo ipsum, eu vulputate diam sodales eget. In pulvinar scelerisque tortor, nec auctor quam euismod mollis. Phasellus non lobortis quam, in condimentum nisl. Cras ex nisi, pellentesque non. ",
