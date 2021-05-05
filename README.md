@@ -1,2 +1,2 @@
-# aperii-mobile
-The mobile appilcation for Aperii
+# Aperii
+This is the mobile application for Aperii, a social networking site. The app is made using Flutter, a framework built on Dart.
