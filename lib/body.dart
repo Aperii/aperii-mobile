@@ -28,7 +28,7 @@ class _HomepageState extends State {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Row(
+        /*title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image.asset(
@@ -37,19 +37,23 @@ class _HomepageState extends State {
               height: 32,
             ),
           ],
-        ),
-        backgroundColor: Colors.black,
+        ),*/
+        backgroundColor: Colors.redAccent,
+        brightness: Brightness.light,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          print("Button pressed");
+        },
         child: Icon(Icons.add),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.redAccent,
       ),
       floatingActionButtonLocation:
       FloatingActionButtonLocation.endDocked,
 
       bottomNavigationBar:
         BubbleBottomBar(
+
           opacity: 0.2,
           backgroundColor: Colors.white,
           borderRadius: BorderRadius.vertical(
@@ -177,7 +181,7 @@ class _HomepageState extends State {
         ],
       )
           : Icon(
-        Icons.access_time,
+        Icons.settings,
         size: 150.0,
         color: Colors.deepPurple,
       ),
