@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
-
+import 'loginPage.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -180,10 +180,15 @@ class _HomepageState extends State {
           )
         ],
       )
-          : Icon(
-        Icons.settings,
-        size: 150.0,
-        color: Colors.deepPurple,
+          : InkWell(
+        child: Text(
+                "Logout",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24
+                ),
+        ),
+        onTap: () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));},
       ),
     );
   }

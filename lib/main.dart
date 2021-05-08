@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
-import 'body.dart';
+import 'homePage.dart';
+import 'loginPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Aperii',
-      home: Homepage(),
+      home: LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }
