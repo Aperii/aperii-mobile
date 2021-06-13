@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildSubmitButton() {
     return RaisedButton(
       onPressed: () {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homepage()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
       },
       color: Colors.blueAccent[200],
       child: Text(

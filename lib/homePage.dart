@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
-import 'loginPage.dart';
+import 'main.dart';
 
-class Homepage extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  _HomepageState createState() => _HomepageState();
+  _HomeState createState() => _HomeState();
 }
 
-class _HomepageState extends State {
+class _HomeState extends State {
   int currentIndex;
 
   @override
@@ -38,7 +38,7 @@ class _HomepageState extends State {
             ),
           ],
         ),*/
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Color(0xffCC6F6F),
         brightness: Brightness.light,
       ),
       floatingActionButton: FloatingActionButton(
@@ -46,7 +46,7 @@ class _HomepageState extends State {
           print("Button pressed");
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Color(0xffCC6F6F),
       ),
       floatingActionButtonLocation:
       FloatingActionButtonLocation.endDocked,
@@ -188,7 +188,7 @@ class _HomepageState extends State {
                   fontSize: 24
                 ),
         ),
-        onTap: () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));},
+        onTap: () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));},
       ),
     );
   }
