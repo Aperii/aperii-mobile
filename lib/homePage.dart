@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'main.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Home extends StatefulWidget {
   @override
@@ -26,7 +28,7 @@ class _HomeState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xff0a0d0f),
       appBar: AppBar(
         /*title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -45,7 +47,7 @@ class _HomeState extends State {
         onPressed: () {
           print("Button pressed");
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add_box),
         backgroundColor: Color(0xffCC6F6F),
       ),
       floatingActionButtonLocation:
@@ -55,7 +57,7 @@ class _HomeState extends State {
         BubbleBottomBar(
 
           opacity: 0.2,
-          backgroundColor: Colors.white,
+          backgroundColor: Color(0xffDFDFDF),
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(16.0),
           ),
@@ -109,7 +111,7 @@ class _HomeState extends State {
           ? Text(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar nisl nec gravida imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer sit amet pellentesque velit. Morbi id suscipit eros. Nunc fringilla quam id porta auctor. Nunc in facilisis quam, ut posuere metus. Donec finibus ullamcorper diam sed vulputate. Nullam ac quam id lectus placerat blandit. Mauris nibh felis, tempor id malesuada et, elementum sed elit. Morbi sit amet ultricies velit, vitae accumsan dolor. In hac habitasse platea dictumst. Aliquam volutpat at lectus nec hendrerit. Duis feugiat pretium libero, quis laoreet eros. Sed tempus leo ipsum, eu vulputate diam sodales eget. In pulvinar scelerisque tortor, nec auctor quam euismod mollis. Phasellus non lobortis quam, in condimentum nisl. Cras ex nisi, pellentesque non. ",
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white)
+          style: TextStyle(color: Color(0xffDFDFDF))
       )
           : (currentIndex == 1)
           ? Column(
@@ -121,7 +123,7 @@ class _HomeState extends State {
                     'Username:',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Colors.white
+                        color: Color(0xffDFDFDF)
                     )
                 ),
               ),
@@ -130,7 +132,7 @@ class _HomeState extends State {
                     'Placeholder',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Colors.white
+                        color: Color(0xffDFDFDF)
                     )
                 ),
               ),
@@ -192,4 +194,15 @@ class _HomeState extends State {
       ),
     );
   }
+}
+
+Future<String> getData() async {
+  var response = await http.get(
+      Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
+      headers: {"Accept": "application/json"});
+
+  setState(() {
+    data = json.decode(response.body);
+  });
+  return "Success";
 }
