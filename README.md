@@ -7,10 +7,10 @@ This is the mobile application for Aperii, a social networking site. The app is 
 For right now there is no "official" way to install the app via Google Play or F-Droid but you can go under the Release tab and download the .apk file that matches your architecture (if you don't know what architecture you use, it's most likely arm64)
 
 ## Building the App
-### Command Line (Does Not Install to  Device)
+### Command Line (Does Not Install to Device)
 If you want to build the app without installing it to your device, you can clone the repository, open it in a preferred editor, I use Android Studio, and open a terminal and type `flutter build apk --split-per-abi`, then you can go to `.\build\app\outputs\apk\release` and you should find the APKs there, to build an appbundle, you can run `flutter build appbundle` and it'll be in `.\build\app\outputs\bundle\release`.
 
-### Command Line (Installs to  Device)
+### Command Line (Installs to Device)
 If you wish to install the app to your device, you can just run `flutter run lib/main.dart` and if it detects a connected device, it should run it.
 
 ### GUI (Installs to Device)
