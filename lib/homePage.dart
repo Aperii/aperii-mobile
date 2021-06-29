@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'main.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -11,6 +15,24 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State {
   int currentIndex;
+  final storage = new FlutterSecureStorage();
+
+  Future<void> postsFunc() async {
+    String token = await storage.read(key: "token");
+    print(token);
+    var response = await http.get(
+        Uri.parse('https://aperii.com/api/v1/posts/all'),
+        headers: {
+          "authorization": token,
+        }
+    ).timeout(const Duration(seconds: 30));
+
+    print(response.body);
+
+    //Map data = json.decode(response.body);
+    var data = await json.decode(json.encode(response.body));
+    print(data);
+  }
 
   @override
   void initState() {
@@ -40,12 +62,12 @@ class _HomeState extends State {
             ),
           ],
         ),*/
-        backgroundColor: Color(0xffCC6F6F),
+        backgroundColor: Color(0xff0a0d0f),
         brightness: Brightness.light,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print("Button pressed");
+          postsFunc();
         },
         child: Icon(Icons.add_box),
         backgroundColor: Color(0xffCC6F6F),
@@ -57,7 +79,7 @@ class _HomeState extends State {
         BubbleBottomBar(
 
           opacity: 0.2,
-          backgroundColor: Color(0xffDFDFDF),
+          backgroundColor: Color(0xff212a31),
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(16.0),
           ),
@@ -69,38 +91,38 @@ class _HomeState extends State {
           onTap: changePage,
           items: [
             BubbleBottomBarItem(
-              backgroundColor: Colors.red,
+              backgroundColor: Color(0xfff65c51),
               icon: Icon(
-                Icons.dashboard,
-                color: Colors.black,
+                Icons.home,
+                color: Color(0xffDFDFDF),
               ),
               activeIcon: Icon(
-                Icons.dashboard,
+                Icons.home,
                 color: Colors.red,
               ),
               title: Text('Home'),
             ),
             BubbleBottomBarItem(
-              backgroundColor: Colors.indigo,
+              backgroundColor: Color(0xff5969c5),
               icon: Icon(
-                Icons.account_circle_outlined,
-                color: Colors.black,
+                Icons.account_circle,
+                color: Color(0xffDFDFDF),
               ),
               activeIcon: Icon(
-                Icons.account_circle_outlined,
-                color: Colors.indigo,
+                Icons.account_circle,
+                color: Color(0xff6877ca),
               ),
               title: Text('Profile'),
             ),
             BubbleBottomBarItem(
-              backgroundColor: Colors.deepPurple,
+              backgroundColor: Color(0xff8b64ce),
               icon: Icon(
                 Icons.settings,
-                color: Colors.black,
+                color: Color(0xffDFDFDF),
               ),
               activeIcon: Icon(
                 Icons.settings,
-                color: Colors.deepPurple,
+                color: Color(0xff8b64ce),
               ),
               title: Text('Settings'),
             ),
@@ -108,10 +130,34 @@ class _HomeState extends State {
       ),
 
       body: (currentIndex == 0)
-          ? Text(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar nisl nec gravida imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer sit amet pellentesque velit. Morbi id suscipit eros. Nunc fringilla quam id porta auctor. Nunc in facilisis quam, ut posuere metus. Donec finibus ullamcorper diam sed vulputate. Nullam ac quam id lectus placerat blandit. Mauris nibh felis, tempor id malesuada et, elementum sed elit. Morbi sit amet ultricies velit, vitae accumsan dolor. In hac habitasse platea dictumst. Aliquam volutpat at lectus nec hendrerit. Duis feugiat pretium libero, quis laoreet eros. Sed tempus leo ipsum, eu vulputate diam sodales eget. In pulvinar scelerisque tortor, nec auctor quam euismod mollis. Phasellus non lobortis quam, in condimentum nisl. Cras ex nisi, pellentesque non. ",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Color(0xffDFDFDF))
+          ? Center(
+        child: Container(
+            height: 100,
+            width: 100,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Color(0xffdbdbdb),
+              ),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Column(
+              children: <Widget>[
+                Text(
+                    "Username",
+                    style: TextStyle(color: Colors.white)
+                ),
+                Text(
+                    "@username",
+                    style: TextStyle(color: Colors.white)
+                ),
+                Text(
+                    "Body Text",
+                    style: TextStyle(color: Colors.white)
+                )
+              ],
+            )
+        ),
+
       )
           : (currentIndex == 1)
           ? Column(
@@ -194,15 +240,4 @@ class _HomeState extends State {
       ),
     );
   }
-}
-
-Future<String> getData() async {
-  var response = await http.get(
-      Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
-      headers: {"Accept": "application/json"});
-
-  setState(() {
-    data = json.decode(response.body);
-  });
-  return "Success";
 }

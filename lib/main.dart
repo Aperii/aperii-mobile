@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'homePage.dart';
 import 'signUpPage.dart';
@@ -35,6 +38,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String newPassword, newUsername;
+
+  final storage = new FlutterSecureStorage();
+
+  Future<void> loginFunc(username, password) async {
+    var response = await http.post(
+        Uri.parse('https://aperii.com/api/v1/auth/login'),
+        body: {
+          "username": username,
+          "password": password,
+        }
+    );
+
+    Map data = json.decode(response.body);
+    await storage.write(key: "token", value: data['token']);
+    print("Logged in!");
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -81,8 +102,9 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: <Widget>[
                           TextField(
+                            style: TextStyle(color: Colors.white),
                             decoration: InputDecoration(
-                                labelText: 'EMAIL',
+                                labelText: 'USERNAME',
                                 labelStyle: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
@@ -93,9 +115,14 @@ class _HomePageState extends State<HomePage> {
                                     )
                                 )
                             ),
+                            onChanged: (username) {
+                              newUsername = username;
+                            },
+                            keyboardType: TextInputType.text,
                           ),
                           SizedBox(height: 20.0),
                           TextField(
+                            style: TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                                 labelText: 'PASSWORD',
                                 labelStyle: TextStyle(
@@ -105,6 +132,10 @@ class _HomePageState extends State<HomePage> {
                                 focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: Color(0xffC2C2C2)))),
                             obscureText: true,
+                            onChanged: (password) {
+                              newPassword = password;
+                            },
+                            keyboardType: TextInputType.text,
                           ),
                           SizedBox(height: 5.0),
                           Container(
@@ -125,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                           GestureDetector(
                             onTap: () {
                               Navigator.of(context).pushNamed('/home');
-                              print("Pressed");
+                              loginFunc(newUsername, newPassword);
                             },
                               child: Container(
                                 height: 40.0,
