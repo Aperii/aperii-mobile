@@ -15,3 +15,8 @@ If you wish to install the app to your device, you can just run `flutter run lib
 
 ### GUI (Installs to Device)
 Through the GUI in Android Studio, you can directly run it and install it to your device. All you have to do is have a AVD (Android Virtual Device) installed, or connect your phone via ADB and it should detect it just fine, then click Run and it should begin building and installing it to your phone.
+
+#### Requirements
+- This app was written using Flutter SDK v2.2.2 and Dart SDK v2.13.3.
+- [NOTICE] As of now, the app is Android only until either developer can get a Mac and developer license in order to sign the app for the App Store. ETA on that is N/A as of right now. Soon™.
+- Libraries can be found in pubspec.yaml if you're curious about the libraries used, and in order to install them you just run `flutter pub get`.
