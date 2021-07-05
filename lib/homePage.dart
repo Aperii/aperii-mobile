@@ -29,11 +29,9 @@ class _HomeState extends State {
 
     print(response.body);
 
-    //Map data = json.decode(response.body);
-    var data = await json.decode(json.encode(response.body));
-    print(data);
+     Map data = json.decode(response.body);
+    return data;
   }
-
   @override
   void initState() {
     super.initState();
